@@ -7,8 +7,13 @@ import (
 )
 
 func main() {
-	length := rand.Intn(20) + 10
+	length := rand.Intn(150) + 10
 	charset := passgen.ComposeAlphabet(true, true)
-	pswrd := passgen.GeneratePassword(length, charset)
+	pswrd, err := passgen.GeneratePassword(length, &charset)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
 	fmt.Println(string(pswrd))
 }
